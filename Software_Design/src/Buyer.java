@@ -9,7 +9,7 @@ public class Buyer {
 	public Buyer()
 	{
 		Scanner keyboard;
-		// doldol
+		// 커밋 테스트입니다.
 		keyboard  = new Scanner(System.in);
 		System.out.print("Name : ");
 		setName(keyboard.nextLine());
