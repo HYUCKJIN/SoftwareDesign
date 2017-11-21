@@ -3,8 +3,8 @@ import java.util.*;
 public class main {
 
 	public static void main(String[] args) {
-		 System.out.println("PHONE SELL RECOMMAND SYSTEM");
-		 int choose_mode=choosemenu(2, "1: Sellor, 2:Buyer");
+		 System.out.println("PHONE / CALLINGPLAN RECOMMAND SYSTEM");
+		 int choose_mode=choosemenu(2, "1: Seller, 2:Buyer");
 		
 		 if(choose_mode == 1)
 		 {
@@ -13,6 +13,19 @@ public class main {
 		 else if(choose_mode == 2)
 		 {
 			 Buyer buyer = new Buyer();
+			 //기종 검색, 요금제 검색 추가.
+			 System.out.println("무슨 일 때문에 오셨습니까?");
+			 int choose_mode_inBuyer=choosemenu(2, "1: 기종검색, 2:요금제검색");
+			 
+			 if(choose_mode_inBuyer == 1)
+			 {
+				 Phone_List plist = new Phone_List();	//기종검색
+			 }
+			 else if(choose_mode_inBuyer == 2)
+			 {
+				 CallingPlan_List cplist = new CallingPlan_List();	//요금제검색
+			 }
+			 
 		 }
 	}
 	

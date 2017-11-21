@@ -9,7 +9,7 @@ public class Buyer {
 	public Buyer()
 	{
 		Scanner keyboard;
-		// last test
+		
 		keyboard  = new Scanner(System.in);
 		System.out.print("Name : ");
 		setName(keyboard.nextLine());
