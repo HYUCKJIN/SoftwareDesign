@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class main {
-
+//¤²¤§¤²¤§
 	public static void main(String[] args) {
 		 System.out.println("PHONE / CALLINGPLAN RECOMMAND SYSTEM");
 		 int choose_mode=choosemenu(2, "1: Seller, 2:Buyer");
