@@ -69,7 +69,7 @@ public class Phone_List {
 		thinkPhone = new Phone(thinkPhoneName, 1);
 		
 		int index = 0;
-		int arraySize = total_phone_list.size();
+		int arraySize = total_phone_list.size(); ///////////에러나는부분!!!!!!!!!!!!!!!!!!!!
 		while(currentPhone != null)
 		{
 			if(arraySize <= index) //리스트사이즈보다 찾는 인덱스의 값이 커졌을 떄
