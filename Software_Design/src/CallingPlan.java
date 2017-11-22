@@ -42,6 +42,7 @@ public class CallingPlan {
 		System.out.printf("전화용량:	" + CALL + "\n");
 		System.out.printf("데이터용량: " + DATA +"\n");
 		System.out.printf("가격:		" + PRICE + "\n");
+		
 
 	}
 	
