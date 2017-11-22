@@ -38,6 +38,45 @@ public class Phone {
 		setPERFORMANCE(PERFORMENCE);
 	}
 	
+	public void printPhoneINFO()
+	{
+		System.out.printf("이름:		" + MODEL_NAME + "\n");
+		System.out.printf("CPU:		" + CPU_INFO + "\n");
+		System.out.printf("화면크기:	" + DISPLAY + "\n");
+		System.out.printf("램:		" + RAM + "\n");
+		System.out.printf("저장용량:	" + STORAGE + "\n");
+		System.out.printf("가격:		" + PRICE + "\n");
+		System.out.printf("성능:		" + PERFORMANCE + "\n");
+	}
+	
+	public boolean equal(Phone currentPhone) //상세비교
+	{
+		String str = null;
+		if((str = currentPhone.getMODEL_NAME()) != MODEL_NAME)
+			return false;
+		else if((str = currentPhone.getCPU_INFO()) != CPU_INFO)
+			return false;
+		else if((str = currentPhone.getDISPLAY()) != DISPLAY)
+			return false;
+		else if((str = currentPhone.getRAM()) != RAM)
+			return false;
+		else if((str = currentPhone.getSTORAGE()) != STORAGE)
+			return false;
+		else if((str = currentPhone.getPRICE()) != PRICE)
+			return false;
+		else if((str = currentPhone.getPERFORMANCE()) != PERFORMANCE)
+			return false;
+		return true;
+	}
+	
+	public boolean equalName(Phone currentPhone) //이름비교
+	{
+		String str = null;
+		if((str = currentPhone.getMODEL_NAME()) != MODEL_NAME)
+			return false;
+		return true;
+	}
+	
 	public String getMODEL_NAME() {
 		return MODEL_NAME;
 	}

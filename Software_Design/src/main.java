@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 public class main {
@@ -17,9 +18,20 @@ public class main {
 			 System.out.println("무슨 일 때문에 오셨습니까?");
 			 int choose_mode_inBuyer=choosemenu(2, "1: 기종검색, 2:요금제검색");
 			 
-			 if(choose_mode_inBuyer == 1)
+			 if(choose_mode_inBuyer == 1)//기종검색
 			 {
-				 Phone_List plist = new Phone_List();	//기종검색
+				  try
+				  {
+					  Phone_List plist = new Phone_List();
+					  System.out.printf("생각하신 기종을 입력해주세요: ");
+					  Scanner s = new Scanner(System.in);
+					  String SearchPhone = s.nextLine();
+					  plist.Search_Phone(SearchPhone);
+				  }
+				  catch (IOException e)
+				  {
+					  e.printStackTrace();
+				  }
 			 }
 			 else if(choose_mode_inBuyer == 2)
 			 {
