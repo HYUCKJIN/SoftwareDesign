@@ -98,7 +98,7 @@ public class Seller {
 			}
 			else if(selectadmin == 3)
 			{
-				// Market admin
+				// Market admin, ID, PASSWD 포함
 				
 			}
 			else if(selectadmin == 4)
@@ -245,11 +245,23 @@ public class Seller {
 	public void callingplanAdmin()	//요금제 입력 admin
 	{
 		int mode_callingplan=choosemenu(2,"1: Insert, 2: Modify, Delete");
+		Scanner s = new Scanner(System.in);
 		
 		if(mode_callingplan == 1)
 		{
+			System.out.println("요금제 입력을 선택하셨습니다.");
+			String Payname, Message, Call, Data, Price;
 			
-			
+			System.out.print("요금제 명 : ");
+			Payname = s.nextLine();
+			System.out.print("문자량 : ");
+			Message = s.nextLine();
+			System.out.print("통화량 : ");
+			Call = s.nextLine();
+			System.out.print("데이터 : ");
+			Data = s.nextLine();
+			System.out.print("요금 : ");
+			Price = s.nextLine();
 		}
 		else if(mode_callingplan == 2)
 		{
