@@ -3,7 +3,7 @@ import java.util.*;
 
 public class main {
 //test
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		 System.out.println("PHONE / CALLINGPLAN RECOMMAND SYSTEM");
 		 int choose_mode=choosemenu(2, "1: Seller, 2:Buyer");
 		
@@ -20,18 +20,11 @@ public class main {
 			 
 			 if(choose_mode_inBuyer == 1)//기종검색
 			 {
-				  try
-				  {
-					  Phone_List plist = new Phone_List();
-					  System.out.printf("생각하신 기종을 입력해주세요: ");
-					  Scanner s = new Scanner(System.in);
-					  String SearchPhone = s.nextLine();
-					  plist.Search_Phone(SearchPhone);
-				  }
-				  catch (IOException e)
-				  {
-					  e.printStackTrace();
-				  }
+				Phone_List plist = new Phone_List();
+				System.out.printf("생각하신 기종을 입력해주세요: ");
+				Scanner s = new Scanner(System.in);
+				String SearchPhone = s.nextLine();
+				plist.Search_Phone(SearchPhone);
 			 }
 			 else if(choose_mode_inBuyer == 2)
 			 {

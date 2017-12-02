@@ -54,19 +54,24 @@ public class Seller {
 			} catch (IOException e) {	//존재여부 확인하고 와서 들어갈 일 없음.
 				e.printStackTrace();
 			}
-			int phoneorcallingplan = choosemenu(3,"1: Phone, 2: CallingPlan, 3: Exit");
+			int selectadmin = choosemenu(3,"1: Phone, 2: CallingPlan, 3: Market, 4: Exit");
 			
-			if(phoneorcallingplan ==1)
+			if(selectadmin ==1)
 			{
 				//Phone admin
 				phoneAdmin();
 			}
-			else if(phoneorcallingplan ==2)
+			else if(selectadmin ==2)
 			{
 				//CallingPlan admin
 				callingplanAdmin();
 			}
-			else if(phoneorcallingplan == 3)
+			else if(selectadmin == 3)
+			{
+				// Market admin
+				
+			}
+			else if(selectadmin == 4)
 			{
 				System.exit(0);
 			}

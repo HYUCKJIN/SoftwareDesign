@@ -10,7 +10,7 @@ public class Phone_List {
 	private Phone thinkPhone;
 	
 	
-	public Phone_List() throws IOException
+	public Phone_List()
 	{
 		int index;
 		String str;
@@ -32,7 +32,7 @@ public class Phone_List {
 		}
 	}
 	
-	public Phone inputData_Phone(int index) throws IOException //인덱스를 읽어 Phone클래스형 변수로 리턴
+	public Phone inputData_Phone(int index)//인덱스를 읽어 Phone클래스형 변수로 리턴
 	{
 		index = 0; //파일인덱스번호
 		String str = Integer.toString(index) + ".txt"; //문자열로 형변환
@@ -40,24 +40,36 @@ public class Phone_List {
 		
 		///////////파일읽는부분/////////////////////////////////////////////////////////////////////
 		File file = new File(str);
-		BufferedReader input = new BufferedReader(new FileReader(file)); 
+		FileReader fr;
+		BufferedReader input; 
+		try
+		{
+			fr = new FileReader(file);
+			input = new BufferedReader(fr);
+			String s = null;
+			s = input.readLine();
+			currentPhone.setMODEL_NAME(s);
+			s = input.readLine();
+			currentPhone.setCPU_INFO(s);
+			s = input.readLine();
+			currentPhone.setDISPLAY(s);
+			s = input.readLine();
+			currentPhone.setRAM(s);
+			s = input.readLine();
+			currentPhone.setSTORAGE(s);
+			s = input.readLine();
+			currentPhone.setPRICE(s);
+			s = input.readLine();
+			currentPhone.setPERFORMANCE(s);
+			input.close();
+		}
+		catch (IOException e)
+		{
+			  e.printStackTrace();
+		}
 		
-		String s = null;
-		s = input.readLine();
-		currentPhone.setMODEL_NAME(s);
-		s = input.readLine();
-		currentPhone.setCPU_INFO(s);
-		s = input.readLine();
-		currentPhone.setDISPLAY(s);
-		s = input.readLine();
-		currentPhone.setRAM(s);
-		s = input.readLine();
-		currentPhone.setSTORAGE(s);
-		s = input.readLine();
-		currentPhone.setPRICE(s);
-		s = input.readLine();
-		currentPhone.setPERFORMANCE(s);
-		input.close();
+		
+		
 		/////////////////////////////////////////////////////////////////////////////////////////
 		
 		return currentPhone;

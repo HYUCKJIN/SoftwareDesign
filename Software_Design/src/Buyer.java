@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 
@@ -30,7 +31,7 @@ public class Buyer {
 			//1.기종검색
 			Phone_List Buyer_Phone = new Phone_List();								//폰 리스트불러와서 사용자로부터 폰기종 입력받았을떄 검색할준비.
 			Recommand Buyer_Recommand = new Recommand();							//Recommand 불러와서 마지막에 추천 받을껀지 안받을껀지 보고 추천할것
-			if(keyboard.nextLine() == //폰리스트중의이름)																	//if문안에는 사용자로부터 입력받은거랑 폰 이름같은거 확인해보고 if문 안에서 결과출력할것.
+			if(keyboard.nextLine().equals("temp"))//폰리스트중의이름)																	//if문안에는 사용자로부터 입력받은거랑 폰 이름같은거 확인해보고 if문 안에서 결과출력할것.
 			{
 					
 			}
