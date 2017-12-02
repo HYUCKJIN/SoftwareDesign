@@ -11,17 +11,47 @@ public class Seller {
 		//파일 존재 여부 확인.
 		if(!CheckExistFile("SellerInfo"))
 		{
+			System.out.println("최초실행입니다. 정보입력이 필요합니다.");
 			GetFileInfo();
 		}
 		else
 		{
+			Scanner s;
+			s = new Scanner(System.in);
+			
 			try {
 				FileInputStream fin = new FileInputStream("SellerInfo");
 				Reader reader = new InputStreamReader(fin, "euc-kr"); 
 				BufferedReader in = new BufferedReader(reader);
 				
 				char b;
+				String ID = "", PASSWD = "";
+				String inputID, inputPASSWD;
 				String temp = "";
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					ID += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					PASSWD += b;
+				}
+				
+				while(true)
+				{
+					/// 보안화 필요
+					System.out.print("아이디 : ");
+					inputID = s.nextLine();
+					System.out.print("비밀번호 : ");
+					inputPASSWD = s.nextLine();
+					
+					if(ID.equals(inputID) && PASSWD.equals(inputPASSWD))
+						break;
+					else
+						System.out.println("틀렸습니다. 다시 한번 시도해주세요");
+				}
 				
 				while((b = (char) in.read()) != '\0')
 				{
@@ -96,6 +126,26 @@ public class Seller {
 		Scanner s;
 		s = new Scanner(System.in);
 		
+		System.out.println("사용할 ID와 PASSWIORD를 입력하세요.");
+		System.out.print("아이디 : ");
+		String s_ID = s.nextLine();
+		
+		String s_PASS1, s_PASS2;
+		
+		while(true)
+		{
+			/// 보안화 필요
+			System.out.print("비밀번호 : ");
+			s_PASS1 = s.nextLine();
+			System.out.print("비밀번호 확인: ");
+			s_PASS2 = s.nextLine();
+			
+			if(s_PASS1.equals(s_PASS2))
+				break;
+			else
+				System.out.println("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+		}
+		
 		System.out.print("사업자 번호를 입력하세요. : ");
 		String temp = s.nextLine();
 		int bn = Integer.parseInt(temp);
@@ -113,6 +163,17 @@ public class Seller {
 			// 각 정보마다 NULL을 통해 구분시킴.
 			
 			FileOutputStream out = new FileOutputStream("SellerInfo");
+			
+			out.write(s_ID.getBytes());
+			out.flush();
+			out.write(0x00);
+			out.flush();
+			
+			out.write(s_PASS1.getBytes());
+			out.flush();
+			out.write(0x00);
+			out.flush();
+			
 			out.write(Integer.toString(bn).getBytes());
 			out.flush();
 			out.write(0x00);	//NULL. NULL을 통해 내용 구분을 목적으로 입력.
@@ -129,8 +190,8 @@ public class Seller {
 			out.flush();
 			
 			out.close();
-			
-		} catch (IOException e) {
+		} catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 	}
