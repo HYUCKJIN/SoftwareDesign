@@ -183,6 +183,40 @@ public class Phone_List {
 			Reader reader = new InputStreamReader(fin, "euc-kr"); 
 			BufferedReader in = new BufferedReader(reader);
 			
+			char b;
+			
+			int BUFFER_SIZE = 1000;
+			String serialNumber = null;
+			String PhoneName = null;
+			
+			in.mark(BUFFER_SIZE);
+			while(in.read() != '\0')
+			{
+				in.reset();
+				while((b = (char) in.read()) != '\0')
+				{
+					serialNumber += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					PhoneName += b;
+				}
+				in.mark(BUFFER_SIZE);
+				
+				FileInputStream fin_phone = new FileInputStream(Path + serialNumber);
+				Reader reader_phone = new InputStreamReader(fin_phone, "euc-kr"); 
+				BufferedReader in_phone = new BufferedReader(reader_phone);
+				
+				
+				
+				
+				serialNumber = null;
+				PhoneName = null;
+			
+			}
+			
+			
 			
 			
 			fin.close();
