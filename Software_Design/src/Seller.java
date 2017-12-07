@@ -84,7 +84,8 @@ public class Seller {
 			} catch (IOException e) {	//존재여부 확인하고 와서 들어갈 일 없음.
 				e.printStackTrace();
 			}
-			int selectadmin = choosemenu(3,"1: Phone, 2: CallingPlan, 3: Market, 4: Exit");
+			
+			int selectadmin = choosemenu(4,"1: Phone, 2: CallingPlan, 3: Market, 4: Exit");
 			
 			if(selectadmin ==1)
 			{
@@ -98,8 +99,8 @@ public class Seller {
 			}
 			else if(selectadmin == 3)
 			{
-				// Market admin, ID, PASSWD 포함
-				
+				// Market admin, ID, PASSWD 정보 수정을 위한 공간. 이 메뉴를 클릭하게 되면 SellerInfo 지우고 다시 만들게 된다.
+				marketAdmin();
 			}
 			else if(selectadmin == 4)
 			{
@@ -108,8 +109,6 @@ public class Seller {
 			
 			// Admin_mode
 		}
-		//없으면 새로운 정보 입력. 후 관리자 모드 출력.
-		
 	}
 	
 	public boolean CheckExistFile(String filename)
@@ -120,7 +119,7 @@ public class Seller {
 		
 		return isExists;
 	}
-	
+
 	public void GetFileInfo()
 	{
 		Scanner s;
@@ -195,7 +194,6 @@ public class Seller {
 			e.printStackTrace();
 		}
 	}
-	
 			
 	public int choosemenu(int count, String condition)
 	{
@@ -220,9 +218,7 @@ public class Seller {
 			 }
 			 
 			 System.out.println("Input Wrong Number");
-		
-		}		
-	
+		}	
 	}
 	
 	public void phoneAdmin()	//기종 입력 admin
@@ -268,6 +264,19 @@ public class Seller {
 			
 		}
 		
+	}
+	
+	public void marketAdmin()
+	{
+		String s = "SellerInfo";
+	    File f = new File(s);
+
+	    if (f.delete()) {
+	      System.out.println("Success Delete: " + s);
+	    } else {
+	      System.err.println("Fail Delete: " + s);
+	    }
+
 	}
 
 	public int getBusinessNumber() {

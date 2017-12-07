@@ -15,22 +15,8 @@ public class main {
 		 {
 			 Buyer buyer = new Buyer();
 			 //기종 검색, 요금제 검색 추가.
-			 System.out.println("무슨 일 때문에 오셨습니까?");
-			 int choose_mode_inBuyer=choosemenu(2, "1: 기종검색, 2:요금제검색");
-			 
-			 if(choose_mode_inBuyer == 1)//기종검색
-			 {
-				Phone_List plist = new Phone_List();
-				System.out.printf("생각하신 기종을 입력해주세요: ");
-				Scanner s = new Scanner(System.in);
-				String SearchPhone = s.nextLine();
-				plist.Search_Phone(SearchPhone);
-			 }
-			 else if(choose_mode_inBuyer == 2)
-			 {
-				 CallingPlan_List cplist = new CallingPlan_List();	//요금제검색
-			 }
-			 
+
+			 main_recommand();
 		 }
 	}
 	
@@ -51,6 +37,7 @@ public class main {
 			 {
 				 if(value == i)
 				 {
+					 System.out.println(" "); // 정리용
 					 return value;
 				 }
 			 }
@@ -59,6 +46,29 @@ public class main {
 		
 		}		
 	
+	}
+	
+	public static void main_recommand()
+	{
+		System.out.println("무슨 일 때문에 오셨습니까?");
+		 int choose_mode_inBuyer=choosemenu(2, "1: 기종검색, 2:요금제검색, 3: 종료");
+		 
+		 if(choose_mode_inBuyer == 1)//기종검색
+		 {
+			Phone_List plist = new Phone_List();
+			System.out.printf("생각하신 기종을 입력해주세요: ");
+			Scanner s = new Scanner(System.in);
+			String SearchPhone = s.nextLine();
+			plist.Search_Phone(SearchPhone);
+		 }
+		 else if(choose_mode_inBuyer == 2)
+		 {
+			 CallingPlan_List cplist = new CallingPlan_List();	//요금제검색
+		 }
+		 else
+		 {
+			 System.exit(0);
+		 }
 	}
 
 }
