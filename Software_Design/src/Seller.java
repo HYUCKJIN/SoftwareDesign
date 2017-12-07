@@ -5,6 +5,8 @@ public class Seller {
 	private String marketInfo;
 	private String sellerInfo;
 	private int businessNumber;
+	private Phone_List phonelist;
+	private CallingPlan_List callingplanlist;
 	
 	public Seller()
 	{
@@ -229,7 +231,7 @@ public class Seller {
 		{
 			System.out.println("Insert Phone");
 			
-			
+			phonelist = new Phone_List(1);
 		}
 		else if(mode_phone == 2)
 		{

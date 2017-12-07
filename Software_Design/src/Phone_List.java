@@ -1,17 +1,61 @@
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 
 public class Phone_List {
 	private ArrayList<Phone> total_phone_list;
 	private ArrayList<Phone> output_phone_list;
 	private Phone thinkPhone;
-	
+	private String Path = "./Phone/";
 	
 	public Phone_List()
 	{
+		
+	}
+	
+	public Phone_List(int mode)
+	{
+		if (mode == 1)	//판매자에서 불러 왔을 때.
+		{
+			boolean check_dir;
+		
+			check_dir=CheckExistDir("Phone");
+				
+			if(check_dir)
+			{
+					ReadFile_PhoneList();
+			}
+			else	//Phone이라는 폴더 없을 때 생성.
+			{
+				File dir_phone = new File("Phone");
+				if(!dir_phone.mkdirs())
+				{
+					System.err.println("MKDIR Error");
+				}	
+			}
+				
+			
+			
+			
+		}
+		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
+		{
+			
+		}
+		else if(mode == 3)	//추천 클래스에서 만들었을 때.
+		{
+			
+		}
+		else
+		{
+			
+		}
+		/*
 		int index;
 		String str;
 		
@@ -30,12 +74,13 @@ public class Phone_List {
 			}
 			index++; //다음 인덱스 읽을 준비
 		}
+		*/
 	}
 	
 	public Phone inputData_Phone(int index)//인덱스를 읽어 Phone클래스형 변수로 리턴
 	{
 		index = 0; //파일인덱스번호
-		String str = Integer.toString(index) + ".txt"; //문자열로 형변환
+		String str = Integer.toString(index); //문자열로 형변환
 		Phone currentPhone = new Phone();
 		
 		///////////파일읽는부분/////////////////////////////////////////////////////////////////////
@@ -111,7 +156,44 @@ public class Phone_List {
 		
 		return isExists;
 	}
-
+	
+	public boolean CheckExistDir(String dirname)
+	{
+		File dir = new File(dirname);
+		
+		boolean isExists = dir.isDirectory();
+		
+		return isExists;
+	}
+	
+	public void ReadFile_PhoneList()
+	{
+		if(!CheckExistFile(Path + "PhoneIndex"))
+		{
+			File file = new File(Path + "PhoneIndex");
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		try {
+			FileInputStream fin = new FileInputStream(Path + "PhoneIndex");
+			Reader reader = new InputStreamReader(fin, "euc-kr"); 
+			BufferedReader in = new BufferedReader(reader);
+			
+			
+			
+			fin.close();
+			in.close();
+			
+		} catch (IOException e) {	//존재여부 확인하고 와서 들어갈 일 없음.
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public ArrayList<Phone> getTotal_phone_list() {
 		return total_phone_list;
 	}

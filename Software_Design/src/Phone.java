@@ -26,8 +26,7 @@ public class Phone {
 		else setMODEL_NAME(null);
 	}
 	
-	public Phone(String MODEL_NAME, String CPU_INFO, String DISPLAY,
-			String RAM, String STORAGE, String PRICE, String PERFORMENCE)
+	public Phone(String MODEL_NAME, String CPU_INFO, String DISPLAY, String RAM, String STORAGE, String PRICE, String PERFORMENCE)
 	{
 		setMODEL_NAME(MODEL_NAME);
 		setCPU_INFO(CPU_INFO);
