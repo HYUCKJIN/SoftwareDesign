@@ -20,6 +20,8 @@ public class Phone_List {
 	
 	public Phone_List(int mode)
 	{
+		total_phone_list = new ArrayList<Phone>();
+		
 		if (mode == 1)	//판매자에서 불러 왔을 때.
 		{
 			boolean check_dir;
@@ -77,10 +79,8 @@ public class Phone_List {
 		*/
 	}
 	
-	public Phone inputData_Phone(int index)//인덱스를 읽어 Phone클래스형 변수로 리턴
+	public Phone inputData_Phone(String str)//인덱스를 읽어 Phone클래스형 변수로 리턴
 	{
-		index = 0; //파일인덱스번호
-		String str = Integer.toString(index); //문자열로 형변환
 		Phone currentPhone = new Phone();
 		
 		///////////파일읽는부분/////////////////////////////////////////////////////////////////////
@@ -184,17 +184,20 @@ public class Phone_List {
 			BufferedReader in = new BufferedReader(reader);
 			
 			char b;
+			char chc;
 			
 			int BUFFER_SIZE = 1000;
 			String serialNumber = null;
 			String PhoneName = null;
 			
 			in.mark(BUFFER_SIZE);
-			while(in.read() != '\0')
+			while((chc = (char)in.read() )!= '\uffff')
 			{
+
 				in.reset();
 				while((b = (char) in.read()) != '\0')
 				{
+					System.out.format("0x%02X%n", (int)b);
 					serialNumber += b;
 				}
 				
@@ -204,19 +207,18 @@ public class Phone_List {
 				}
 				in.mark(BUFFER_SIZE);
 				
-				FileInputStream fin_phone = new FileInputStream(Path + serialNumber);
-				Reader reader_phone = new InputStreamReader(fin_phone, "euc-kr"); 
-				BufferedReader in_phone = new BufferedReader(reader_phone);
+				if(serialNumber ==null)
+				{
+					break;
+				}
 				
-				
-				
+				getTotal_phone_list().add(inputData_Phone(Path+serialNumber));
 				
 				serialNumber = null;
 				PhoneName = null;
-			
 			}
 			
-			
+			System.out.println(getTotal_phone_list().size());
 			
 			
 			fin.close();
