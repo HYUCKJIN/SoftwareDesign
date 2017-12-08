@@ -55,7 +55,7 @@ public class main {
 		 
 		 if(choose_mode_inBuyer == 1)//기종검색
 		 {
-			Phone_List plist = new Phone_List();
+			Phone_List plist = new Phone_List(2);
 			System.out.printf("생각하신 기종을 입력해주세요: ");
 			Scanner s = new Scanner(System.in);
 			String SearchPhone = s.nextLine();

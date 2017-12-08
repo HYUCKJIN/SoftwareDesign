@@ -47,7 +47,7 @@ public class Phone_List {
 		}
 		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
 		{
-			
+			ReadFile_PhoneList();
 		}
 		else if(mode == 3)	//추천 클래스에서 만들었을 때.
 		{
@@ -246,14 +246,18 @@ public class Phone_List {
 		if(!CheckExistFile(Path + "PhoneIndex"))
 		{
 			File file = new File(Path + "PhoneIndex");
-			try {
+			try
+			{
 				file.createNewFile();
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				e.printStackTrace();
 			}
 		}
 		
-		try {
+		try
+		{
 			FileInputStream fin = new FileInputStream(Path + "PhoneIndex");
 			Reader reader = new InputStreamReader(fin, "euc-kr"); 
 			BufferedReader in = new BufferedReader(reader);
@@ -281,7 +285,7 @@ public class Phone_List {
 				}
 				in.mark(BUFFER_SIZE);
 				
-				if(serialNumber ==null)
+				if(serialNumber == null)
 				{
 					break;
 				}
