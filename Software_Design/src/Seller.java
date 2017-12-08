@@ -227,11 +227,13 @@ public class Seller {
 	{
 		int mode_phone=choosemenu(2,"1: Insert, 2: Modify, Delete");
 		
+		phonelist = new Phone_List(1);
+		
 		if(mode_phone == 1)
 		{
 			System.out.println("Insert Phone");
+			phonelist.insert_Phone(Integer.toString(phonelist.getTotal_phone_list().size()));
 			
-			phonelist = new Phone_List(1);
 		}
 		else if(mode_phone == 2)
 		{

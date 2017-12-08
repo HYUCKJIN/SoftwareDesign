@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -31,9 +32,9 @@ public class Phone_List {
 			
 			if(check_dir)
 			{
-				int temp = ReadFile_PhoneList();
+				ReadFile_PhoneList();
 				
-				insert_Phone(Integer.toString(temp));
+				//insert_Phone(Integer.toString(total_phone_list.size()));
 			}
 			else	//Phone이라는 폴더 없을 때 생성.
 			{
@@ -191,9 +192,56 @@ public class Phone_List {
 		System.out.print("PERFORMANCE : ");
 		PERFORMANCE = s.nextLine();
 		
+		try {
+			// 각 정보마다 NULL을 통해 구분시킴.
+			
+			FileOutputStream out = new FileOutputStream(Path+File);
+			
+			out.write(MODEL_NAME.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.write(CPU_INFO.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.write(DISPLAY.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.write(RAM.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.write(STORAGE.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.write(PRICE.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.write(PERFORMANCE.getBytes());
+			out.flush();
+			out.write('\n');
+			out.flush();
+			
+			out.close();
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
-	public int ReadFile_PhoneList()
+	public void ReadFile_PhoneList()
 	{
 		if(!CheckExistFile(Path + "PhoneIndex"))
 		{
@@ -250,9 +298,6 @@ public class Phone_List {
 		} catch (IOException e) {	//존재여부 확인하고 와서 들어갈 일 없음.
 			e.printStackTrace();
 		}
-		
-		
-		return total_phone_list.size();
 		
 	}
 	
