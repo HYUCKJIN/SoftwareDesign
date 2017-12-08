@@ -32,7 +32,6 @@ public class CallingPlan {
 		setCALL(CALL);
 		setDATA(DATA);
 		setPRICE(PRICE);
-
 	}
 	
 	public void printCallingPlanINFO()
