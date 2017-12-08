@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Phone_List {
 	private ArrayList<Phone> total_phone_list;
@@ -27,10 +28,12 @@ public class Phone_List {
 			boolean check_dir;
 		
 			check_dir=CheckExistDir("Phone");
-				
+			
 			if(check_dir)
 			{
-					ReadFile_PhoneList();
+				int temp = ReadFile_PhoneList();
+				
+				insert_Phone(Integer.toString(temp));
 			}
 			else	//Phone이라는 폴더 없을 때 생성.
 			{
@@ -40,10 +43,6 @@ public class Phone_List {
 					System.err.println("MKDIR Error");
 				}	
 			}
-				
-			
-			
-			
 		}
 		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
 		{
@@ -165,8 +164,36 @@ public class Phone_List {
 		
 		return isExists;
 	}
+	public void insert_Phone(String File)
+	{
+		Scanner s;
+		s = new Scanner(System.in);
+		
+		String MODEL_NAME;	//index 1
+		System.out.print("MODEL_NAME : ");
+		MODEL_NAME = s.nextLine();
+		String CPU_INFO;	//index 2
+		System.out.print("CPU_INFO : ");
+		CPU_INFO = s.nextLine();
+		String DISPLAY;		//index 3
+		System.out.print("DISPLAY : ");
+		DISPLAY = s.nextLine();
+		String RAM;			//index 4
+		System.out.print("RAM : ");
+		RAM = s.nextLine();
+		String STORAGE;		//index 5
+		System.out.print("STORAGE : ");
+		STORAGE = s.nextLine();
+		String PRICE;		//index 6
+		System.out.print("PRICE : ");
+		PRICE = s.nextLine();
+		String PERFORMANCE;	//index 7
+		System.out.print("PERFORMANCE : ");
+		PERFORMANCE = s.nextLine();
+		
+	}
 	
-	public void ReadFile_PhoneList()
+	public int ReadFile_PhoneList()
 	{
 		if(!CheckExistFile(Path + "PhoneIndex"))
 		{
@@ -184,20 +211,19 @@ public class Phone_List {
 			BufferedReader in = new BufferedReader(reader);
 			
 			char b;
-			char chc;
+			int chc;
 			
 			int BUFFER_SIZE = 1000;
 			String serialNumber = null;
 			String PhoneName = null;
 			
 			in.mark(BUFFER_SIZE);
-			while((chc = (char)in.read() )!= '\uffff')
+			while((chc = in.read() )!= -1)
 			{
 
 				in.reset();
 				while((b = (char) in.read()) != '\0')
 				{
-					System.out.format("0x%02X%n", (int)b);
 					serialNumber += b;
 				}
 				
@@ -212,14 +238,11 @@ public class Phone_List {
 					break;
 				}
 				
-				getTotal_phone_list().add(inputData_Phone(Path+serialNumber));
+				total_phone_list.add(inputData_Phone(Path+serialNumber));
 				
 				serialNumber = null;
 				PhoneName = null;
 			}
-			
-			System.out.println(getTotal_phone_list().size());
-			
 			
 			fin.close();
 			in.close();
@@ -227,6 +250,9 @@ public class Phone_List {
 		} catch (IOException e) {	//존재여부 확인하고 와서 들어갈 일 없음.
 			e.printStackTrace();
 		}
+		
+		
+		return total_phone_list.size();
 		
 	}
 	
