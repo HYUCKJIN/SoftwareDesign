@@ -74,7 +74,7 @@ public class Phone_List {
 			{
 				break; //없으면 break
 			}
-			index++; //다음 인덱스 읽을 준비
+			index++; //다음 인덱스 읽을준비
 		}
 		*/
 	}

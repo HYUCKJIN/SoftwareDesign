@@ -57,7 +57,7 @@ public class CallingPlan_List {
 		}
 	}
 	
-	public CallingPlan inputData_CallingPlan(String str)//인덱스를 읽어 Phone클래스형 변수로 리턴
+	public CallingPlan inputData_CallingPlan(String str)//인덱스를 읽어 CallingPlan클래스형 변수로 리턴
 	{
 		CallingPlan currentCallingPlan = new CallingPlan();
 		
@@ -110,7 +110,7 @@ public class CallingPlan_List {
 				currentCallingPlan= total_CallingPlan_list.get(index);
 			}
 			
-			if(currentCallingPlan.equalName(thinkCallingPlan)) //검색한 기종이 있을 경우
+			if(currentCallingPlan.equalName(thinkCallingPlan)) //검색한 요금제가 있을 경우
 			{
 				thinkCallingPlan.printCallingPlanINFO(); //출력
 				break;
