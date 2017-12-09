@@ -51,23 +51,63 @@ public class main {
 	public static void main_recommand()
 	{
 		System.out.println("무슨 일 때문에 오셨습니까?");
+		
 		 int choose_mode_inBuyer=choosemenu(2, "1: 기종검색, 2:요금제검색, 3: 종료");
 		 int Mode = 2;
+		 
 		 if(choose_mode_inBuyer == 1)//기종검색
 		 {
-			Phone_List plist = new Phone_List(Mode);
-			System.out.printf("생각하신 기종을 입력해주세요: ");
-			Scanner s = new Scanner(System.in);
-			String SearchPhone = s.nextLine();
-			plist.Search_Phone(SearchPhone);
+			Phone_List plist = new Phone_List();
+			plist.ReadFile_PhoneList();
+			
+			int last = plist.print_Phone_List();
+			
+			System.out.println("원하시는 항목의 번호를 입력해주세요");
+			
+			Scanner input = new Scanner(System.in);
+			int inputNUM = input.nextInt();
+			
+			if(inputNUM == last)
+			{
+				
+				/////////////////Recommend (기종상세검색 선택)
+				
+			}
+			else
+			{
+				Phone selectPhone = plist.Get_SelectPhone(inputNUM);
+				
+				System.out.println("선택하신 기종은 " + selectPhone.getMODEL_NAME() + " 입니다.\n");
+				
+				selectPhone.printPhoneINFO();
+			}
 		 }
 		 else if(choose_mode_inBuyer == 2)//요금제검색
 		 {
-			CallingPlan_List cplist = new CallingPlan_List();
-			System.out.printf("생각하신 요금제를 입력해주세요: ");
-			Scanner s = new Scanner(System.in);
-			String SearchPhone = s.nextLine();
-			cplist.Search_Phone(SearchPhone);
+			 CallingPlan_List clist = new CallingPlan_List();
+			clist.ReadFile_CallingPlanList();
+			
+			int last = clist.print_CallingPlan_List();
+				
+			System.out.println("원하시는 항목의 번호를 입력해주세요");
+				
+			Scanner input = new Scanner(System.in);
+			int inputNUM = input.nextInt();
+			
+			if(inputNUM == last)
+			{
+				
+				/////////////////Recommend (요금제상세검색 선택)
+				
+			}
+			else
+			{
+				CallingPlan selectCallingPlan = clist.Get_SelectCallingPlan(inputNUM);
+				
+				System.out.println("선택하신 요금제는 " + selectCallingPlan.getPAY_NAME() + " 입니다.\n");
+				
+				selectCallingPlan.printCallingPlanINFO();
+			}
 		 }
 		 else if(choose_mode_inBuyer == 3)
 		 {

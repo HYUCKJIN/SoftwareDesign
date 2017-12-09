@@ -91,32 +91,30 @@ public class CallingPlan_List {
 		return currentCallingPlan;
 	}
 	
-	public void Search_Phone(String thinkCallingPlanName)
+	public int print_CallingPlan_List() //요금제 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음 //리턴값은 마지막 항목 인덱스
 	{
-		CallingPlan currentCallingPlan = new CallingPlan();
-		thinkCallingPlan = new CallingPlan(thinkCallingPlanName, 1);
-		
-		int index = 0;
-		int arraySize = total_CallingPlan_list.size(); ///////////에러나는부분!!!!!!!!!!!!!!!!!!!!
-		while(currentCallingPlan != null)
+		int num = 0;
+		if(total_CallingPlan_list.isEmpty())
 		{
-			if(arraySize <= index) //리스트사이즈보다 찾는 인덱스의 값이 커졌을 떄
+			System.out.println("요금제 목록이 없습니다.");
+		}	
+		else
+		{
+			while(num <= total_CallingPlan_list.lastIndexOf(total_CallingPlan_list))
 			{
-				System.out.println("검색한 요금제를 찾을수 없습니다.\n");
-				break;
-			}
-			else //다음비교
-			{
-				currentCallingPlan= total_CallingPlan_list.get(index);
-			}
-			
-			if(currentCallingPlan.equalName(thinkCallingPlan)) //검색한 요금제가 있을 경우
-			{
-				thinkCallingPlan.printCallingPlanINFO(); //출력
-				break;
-			}
-			index++;
+				CallingPlan printCallingPlan = total_CallingPlan_list.get(num);
+				System.out.println(num + ". " + printCallingPlan.getPAY_NAME());
+				num++;
+			}	
+			System.out.println(num + ". 잘 모르겠다.");
 		}
+		return num;
+	}
+	
+	public CallingPlan Get_SelectCallingPlan(int num)
+	{
+		CallingPlan tempC = total_CallingPlan_list.get(num);
+		return tempC;
 	}
 	
 	public boolean CheckExistFile(String filename)

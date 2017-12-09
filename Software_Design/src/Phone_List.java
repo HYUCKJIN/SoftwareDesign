@@ -57,26 +57,6 @@ public class Phone_List {
 		{
 			
 		}
-		/*
-		int index;
-		String str;
-		
-		while(true)
-		{
-			index = 0; //파일인덱스번호
-			str = Integer.toString(index) + ".txt"; //문자열로 형변환
-			
-			if(CheckExistFile(str)) //파라미터와 같은 파일이 존재하면
-			{
-				total_phone_list.add(index, inputData_Phone(index)); //파일을 읽어 전체 폰 리스트에 추가
-			}
-			else
-			{
-				break; //없으면 break
-			}
-			index++; //다음 인덱스 읽을준비
-		}
-		*/
 	}
 	
 	public Phone inputData_Phone(String str)//인덱스를 읽어 Phone클래스형 변수로 리턴
@@ -120,32 +100,30 @@ public class Phone_List {
 		return currentPhone;
 	}
 	
-	public void Search_Phone(String thinkPhoneName)
+	public int print_Phone_List() //휴대폰 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음 //리턴값은 마지막 항목 인덱스
 	{
-		Phone currentPhone = new Phone();
-		thinkPhone = new Phone(thinkPhoneName, 1);
-		
-		int index = 0;
-		int arraySize = total_phone_list.size(); ///////////에러나는부분!!!!!!!!!!!!!!!!!!!!
-		while(currentPhone != null)
+		int num = 0;
+		if(total_phone_list.isEmpty())
 		{
-			if(arraySize <= index) //리스트사이즈보다 찾는 인덱스의 값이 커졌을 떄
-			{
-				System.out.println("검색한 기종을 찾을수 없습니다.\n");
-				break;
-			}
-			else //다음비교
-			{
-				currentPhone = total_phone_list.get(index);
-			}
-			
-			if(currentPhone.equalName(thinkPhone)) //검색한 기종이 있을 경우
-			{
-				thinkPhone.printPhoneINFO(); //출력
-				break;
-			}
-			index++;
+			System.out.println("기종 목록이 없습니다.");
 		}
+		else
+		{
+			while(num <= total_phone_list.lastIndexOf(total_phone_list))
+			{
+				Phone printPhone = total_phone_list.get(num);
+				System.out.println(num + ". " + printPhone.getMODEL_NAME());
+				num++;
+			}
+			System.out.println(num + ". 잘 모르겠다.");
+		}
+		return num;
+	}
+	
+	public Phone Get_SelectPhone(int num)
+	{
+		Phone tempP = total_phone_list.get(num);
+		return tempP;
 	}
 	
 	public boolean CheckExistFile(String filename)
@@ -158,6 +136,7 @@ public class Phone_List {
 	}
 	
 	public boolean CheckExistDir(String dirname)
+
 	{
 		File dir = new File(dirname);
 		
@@ -165,6 +144,7 @@ public class Phone_List {
 		
 		return isExists;
 	}
+
 	public void insert_Phone(String File)
 	{
 		Scanner s;
