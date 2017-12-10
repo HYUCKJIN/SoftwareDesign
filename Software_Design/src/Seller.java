@@ -87,28 +87,31 @@ public class Seller {
 				e.printStackTrace();
 			}
 			
-			int selectadmin = choosemenu(4,"1: Phone, 2: CallingPlan, 3: Market, 4: Exit");
-			
-			if(selectadmin ==1)
+			while(true)
 			{
-				//Phone admin
-				phoneAdmin();
+				int selectadmin = choosemenu(4,"1: Phone, 2: CallingPlan, 3: Market, 4: Exit");
+				
+				if(selectadmin ==1)
+				{
+					//Phone admin
+					phonelist = new Phone_List(1);
+					phoneAdmin();
+				}
+				else if(selectadmin ==2)
+				{
+					//CallingPlan admin
+					callingplanAdmin();
+				}
+				else if(selectadmin == 3)
+				{
+					// Market admin, ID, PASSWD 정보 수정을 위한 공간. 이 메뉴를 클릭하게 되면 SellerInfo 지우고 다시 만들게 된다.
+					marketAdmin();
+				}
+				else if(selectadmin == 4)
+				{
+					System.exit(0);
+				}
 			}
-			else if(selectadmin ==2)
-			{
-				//CallingPlan admin
-				callingplanAdmin();
-			}
-			else if(selectadmin == 3)
-			{
-				// Market admin, ID, PASSWD 정보 수정을 위한 공간. 이 메뉴를 클릭하게 되면 SellerInfo 지우고 다시 만들게 된다.
-				marketAdmin();
-			}
-			else if(selectadmin == 4)
-			{
-				System.exit(0);
-			}
-			
 			// Admin_mode
 		}
 	}
@@ -225,49 +228,61 @@ public class Seller {
 	
 	public void phoneAdmin()	//기종 입력 admin
 	{
-		int mode_phone=choosemenu(2,"1: Insert, 2: Modify, Delete");
-		
-		phonelist = new Phone_List(1);
-		
-		if(mode_phone == 1)
+		while(true)
 		{
-			System.out.println("Insert Phone");
-			phonelist.insert_Phone(Integer.toString(phonelist.getTotal_phone_list().size()));
+			int mode_phone=choosemenu(3,"1: Insert, 2: Modify, Delete, 3: Quit");
 			
-		}
-		else if(mode_phone == 2)
-		{
-			System.out.println("Modify, Delete Phone");
+			if(mode_phone == 1)
+			{
+				System.out.println("Insert Phone");
+				phonelist.insert_Phone();
+			}
+			else if(mode_phone == 2)
+			{
+				System.out.println("Modify, Delete Phone");
+			}
+			else if(mode_phone == 3)
+			{
+				System.out.println("Quit");
+				break;
+			}
 		}
 		
 	}
 	
 	public void callingplanAdmin()	//요금제 입력 admin
 	{
-		int mode_callingplan=choosemenu(2,"1: Insert, 2: Modify, Delete");
-		Scanner s = new Scanner(System.in);
-		
-		if(mode_callingplan == 1)
+		while(true)
 		{
-			System.out.println("요금제 입력을 선택하셨습니다.");
-			String Payname, Message, Call, Data, Price;
+			int mode_callingplan=choosemenu(3,"1: Insert, 2: Modify, Delete, 3: Quit");
+			Scanner s = new Scanner(System.in);
 			
-			System.out.print("요금제 명 : ");
-			Payname = s.nextLine();
-			System.out.print("문자량 : ");
-			Message = s.nextLine();
-			System.out.print("통화량 : ");
-			Call = s.nextLine();
-			System.out.print("데이터 : ");
-			Data = s.nextLine();
-			System.out.print("요금 : ");
-			Price = s.nextLine();
+			if(mode_callingplan == 1)
+			{
+				System.out.println("요금제 입력을 선택하셨습니다.");
+				String Payname, Message, Call, Data, Price;
+				
+				System.out.print("요금제 명 : ");
+				Payname = s.nextLine();
+				System.out.print("문자량 : ");
+				Message = s.nextLine();
+				System.out.print("통화량 : ");
+				Call = s.nextLine();
+				System.out.print("데이터 : ");
+				Data = s.nextLine();
+				System.out.print("요금 : ");
+				Price = s.nextLine();
+			}
+			else if(mode_callingplan == 2)
+			{
+				
+			}
+			else if(mode_callingplan == 3)
+			{
+				System.out.println("Quit");
+				break;
+			}
 		}
-		else if(mode_callingplan == 2)
-		{
-			
-		}
-		
 	}
 	
 	public void marketAdmin()

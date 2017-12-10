@@ -45,7 +45,7 @@ public class Phone_List {
 				}	
 			}
 		}
-		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
+		else if(mode == 2)	//구매자에게서 불러 왔을 때. and 추천에서 불러 왔을 때.
 		{
 			boolean check_dir;
 			
@@ -57,16 +57,8 @@ public class Phone_List {
 			}
 			else
 			{
-				System.out.println("기종 목록 정보가 없습니다.");
+				System.out.println("기종 목록 텍스트가 없습니다.");
 			}
-		}
-		else if(mode == 3)	//추천 클래스에서 만들었을 때.
-		{
-			
-		}
-		else
-		{
-			
 		}
 	}
 	
@@ -97,6 +89,8 @@ public class Phone_List {
 			currentPhone.setPRICE(s);
 			s = input.readLine();
 			currentPhone.setPERFORMANCE(s);
+			s = input.readLine();
+			currentPhone.setMANUFACTURE(s);
 			input.close();
 		}
 		catch (IOException e)
@@ -114,10 +108,10 @@ public class Phone_List {
 	public void print_Phone_List() //휴대폰 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
 	{
 		int num;
-		
-		if(total_phone_list.isEmpty())
+		System.out.println(total_phone_list.size());
+		if(!total_phone_list.isEmpty())
 		{
-			System.out.println("기종 목록 정보가 없습니다.");
+			System.out.println("출력할 기종 목록 정보가 없습니다.");
 		}
 		else
 		{
@@ -161,7 +155,7 @@ public class Phone_List {
 		return isExists;
 	}
 
-	public void insert_Phone(String File)
+	public void insert_Phone()
 	{
 		Scanner s;
 		s = new Scanner(System.in);
@@ -184,57 +178,15 @@ public class Phone_List {
 		String PRICE;		//index 6
 		System.out.print("PRICE : ");
 		PRICE = s.nextLine();
-		String PERFORMANCE;	//index 7
+		String PERFORMENCE;	//index 7
 		System.out.print("PERFORMANCE : ");
-		PERFORMANCE = s.nextLine();
+		PERFORMENCE = s.nextLine();
+		String MANUFACTURE;	//index 8
+		System.out.print("MANUFACTURE : ");
+		MANUFACTURE = s.nextLine();
 		
-		try {
-			// 각 정보마다 NULL을 통해 구분시킴.
-			
-			FileOutputStream out = new FileOutputStream(Path+File);
-			
-			out.write(MODEL_NAME.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(CPU_INFO.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(DISPLAY.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(RAM.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(STORAGE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(PRICE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(PERFORMANCE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.close();
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		
+		Phone temp = new Phone(MODEL_NAME, CPU_INFO, DISPLAY, RAM, STORAGE, PRICE, PERFORMENCE, MANUFACTURE);
+		total_phone_list.add(temp);		
 	}
 	
 	public void ReadFile_PhoneList()
