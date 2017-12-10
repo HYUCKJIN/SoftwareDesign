@@ -254,7 +254,7 @@ public class Seller {
 				break;
 			}
 		}
-		
+		//sgadgafdgdfs
 	}
 	
 	public void callingplanAdmin()	//요금제 입력 admin
