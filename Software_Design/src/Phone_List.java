@@ -155,7 +155,7 @@ public class Phone_List {
 		return isExists;
 	}
 
-	public void insert_Phone(String File)
+	public void insert_Phone()
 	{
 		Scanner s;
 		s = new Scanner(System.in);
@@ -178,65 +178,15 @@ public class Phone_List {
 		String PRICE;		//index 6
 		System.out.print("PRICE : ");
 		PRICE = s.nextLine();
-		String PERFORMANCE;	//index 7
+		String PERFORMENCE;	//index 7
 		System.out.print("PERFORMANCE : ");
-		PERFORMANCE = s.nextLine();
+		PERFORMENCE = s.nextLine();
 		String MANUFACTURE;	//index 8
 		System.out.print("MANUFACTURE : ");
 		MANUFACTURE = s.nextLine();
 		
-		try {
-			// 각 정보마다 NULL을 통해 구분시킴.
-			
-			FileOutputStream out = new FileOutputStream(Path+File);
-			
-			out.write(MODEL_NAME.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(CPU_INFO.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(DISPLAY.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(RAM.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(STORAGE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(PRICE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(PERFORMANCE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(MANUFACTURE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.close();
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		
+		Phone temp = new Phone(MODEL_NAME, CPU_INFO, DISPLAY, RAM, STORAGE, PRICE, PERFORMENCE, MANUFACTURE);
+		total_phone_list.add(temp);		
 	}
 	
 	public void ReadFile_PhoneList()
