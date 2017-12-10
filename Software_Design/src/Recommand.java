@@ -52,12 +52,12 @@ public class Recommand {
 		sort(arrScore,5);
 		System.out.println("추천해드리겠습니다!");
 		for(i=0;i<arrPhone.length;i++) {
-			System.out.printf("기존 기종 : 화면크기 > %10.1f인치\t제품형태 > %10s형\t용량크기 > %4dGB\t가격 > %10d원\t제조사 > %10s\n",UserPhone.getDISPLAY(),UserPhone.getPERFORMANCE(),UserPhone.getSTORAGE(),UserPhone.getPRICE(),"apple");
-			System.out.printf("추천 기종 : 화면크기 > %10.1f인치\t제품형태 > %10s형\t용량크기 > %4dGB\t가격 > %10d원\t제조사 > %10s\n",Reco_Phone.Get_SelectPhone(i).getDISPLAY(),Reco_Phone.Get_SelectPhone(i).getPERFORMANCE(),Reco_Phone.Get_SelectPhone(i).getSTORAGE(),Reco_Phone.Get_SelectPhone(i).getPRICE(),"apple");
+			System.out.printf("기존 기종 : 화면크기 > %10s인치\t제품형태 > %10s형\t용량크기 > %4sGB\t가격 > %10s원\t제조사 > %10s\n",UserPhone.getDISPLAY(),UserPhone.getPERFORMANCE(),UserPhone.getSTORAGE(),UserPhone.getPRICE(),"apple");
+			System.out.printf("추천 기종 : 화면크기 > %10s인치\t제품형태 > %10s형\t용량크기 > %4sGB\t가격 > %10s원\t제조사 > %10s\n",Reco_Phone.Get_SelectPhone(i).getDISPLAY(),Reco_Phone.Get_SelectPhone(i).getPERFORMANCE(),Reco_Phone.Get_SelectPhone(i).getSTORAGE(),Reco_Phone.Get_SelectPhone(i).getPRICE(),"apple");
 			i++;
 			if(i==arrPhone.length)
 				break;
-			System.out.printf("추천 기종 : 화면크기 > %10.1f인치\t제품형태 > %10s형\t용량크기 > %4dGB\t가격 > %10d원\t제조사 > %10s\n",Reco_Phone.Get_SelectPhone(i).getDISPLAY(),Reco_Phone.Get_SelectPhone(i).getPERFORMANCE(),Reco_Phone.Get_SelectPhone(i).getSTORAGE(),Reco_Phone.Get_SelectPhone(i).getPRICE(),"apple");
+			System.out.printf("추천 기종 : 화면크기 > %10s인치\t제품형태 > %10s형\t용량크기 > %4sGB\t가격 > %10s원\t제조사 > %10s\n",Reco_Phone.Get_SelectPhone(i).getDISPLAY(),Reco_Phone.Get_SelectPhone(i).getPERFORMANCE(),Reco_Phone.Get_SelectPhone(i).getSTORAGE(),Reco_Phone.Get_SelectPhone(i).getPRICE(),"apple");
 		}
 			
 			
