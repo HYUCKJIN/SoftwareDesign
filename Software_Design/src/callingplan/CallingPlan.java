@@ -1,3 +1,4 @@
+package callingplan;
 
 public class CallingPlan {
 	
