@@ -240,9 +240,16 @@ public class Seller {
 			else if(mode_phone == 2)
 			{
 				System.out.println("Modify, Delete Phone");
+				phonelist.Modifyanddelete();
 			}
 			else if(mode_phone == 3)
 			{
+				try {
+					phonelist.WriteFile_PhoneList();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.println("Quit");
 				break;
 			}
@@ -295,6 +302,8 @@ public class Seller {
 	    } else {
 	      System.err.println("Fail Delete: " + s);
 	    }
+	    
+	    GetFileInfo();
 
 	}
 

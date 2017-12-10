@@ -86,7 +86,7 @@ public class main {
 	{
 		Phone_List plist = new Phone_List(2);
 		
-		plist.print_Phone_List();
+		
 		
 		while(true)
 		{

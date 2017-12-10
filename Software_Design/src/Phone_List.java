@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,6 +15,7 @@ public class Phone_List {
 	private ArrayList<Phone> output_phone_list;
 	private Phone thinkPhone;
 	private String Path = "./Phone/";
+	private String FILENAME ="PHONEINFO";
 	
 	public Phone_List()
 	{
@@ -33,8 +35,6 @@ public class Phone_List {
 			if(check_dir)
 			{
 				ReadFile_PhoneList();
-				
-				//insert_Phone(Integer.toString(total_phone_list.size()));
 			}
 			else	//Phone이라는 폴더 없을 때 생성.
 			{
@@ -57,71 +57,16 @@ public class Phone_List {
 			}
 			else
 			{
-				System.out.println("기종 목록 텍스트가 없습니다.");
+				File dir_phone = new File("Phone");
+				if(!dir_phone.mkdirs())
+				{
+					System.err.println("MKDIR Error");
+				}	
 			}
-		}
-	}
-	
-	public Phone inputData_Phone(String str)//인덱스를 읽어 Phone클래스형 변수로 리턴
-	{
-		Phone currentPhone = new Phone();
-		
-		///////////파일읽는부분/////////////////////////////////////////////////////////////////////
-		File file = new File(str);
-		FileReader fr;
-		BufferedReader input; 
-		try
-		{
-			fr = new FileReader(file);
-			input = new BufferedReader(fr);
-			String s = null;
-			s = input.readLine();
-			currentPhone.setMODEL_NAME(s);
-			s = input.readLine();
-			currentPhone.setCPU_INFO(s);
-			s = input.readLine();
-			currentPhone.setDISPLAY(s);
-			s = input.readLine();
-			currentPhone.setRAM(s);
-			s = input.readLine();
-			currentPhone.setSTORAGE(s);
-			s = input.readLine();
-			currentPhone.setPRICE(s);
-			s = input.readLine();
-			currentPhone.setPERFORMANCE(s);
-			s = input.readLine();
-			currentPhone.setMANUFACTURE(s);
-			input.close();
-		}
-		catch (IOException e)
-		{
-			  e.printStackTrace();
-		}
-		
-		
-		
-		/////////////////////////////////////////////////////////////////////////////////////////
-		
-		return currentPhone;
-	}
-	
-	public void print_Phone_List() //휴대폰 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
-	{
-		int num;
-		System.out.println(total_phone_list.size());
-		if(!total_phone_list.isEmpty())
-		{
-			System.out.println("출력할 기종 목록 정보가 없습니다.");
 		}
 		else
 		{
-			for(num=0;num < total_phone_list.size();num++)
-			{
-				Phone printPhone = total_phone_list.get(num);
-				System.out.println(num + ". " + printPhone.getMODEL_NAME());
-				num++;
-			}
-			System.out.println(num + ". 잘 모르겠다.(상세검색)");
+			
 		}
 	}
 	
@@ -188,12 +133,92 @@ public class Phone_List {
 		Phone temp = new Phone(MODEL_NAME, CPU_INFO, DISPLAY, RAM, STORAGE, PRICE, PERFORMENCE, MANUFACTURE);
 		total_phone_list.add(temp);		
 	}
+	public void WriteFile_PhoneList() throws IOException
+	{
+		FileOutputStream out;
+		try {
+			out = new FileOutputStream(Path + FILENAME);
+			
+			for(int i=0;i<total_phone_list.size();i++)
+			{
+				Phone temp = total_phone_list.get(i);
+				
+				out.write(temp.getMODEL_NAME().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getCPU_INFO().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getDISPLAY().getBytes());
+				out.flush();
+				out.write(0x00);	//NULL. NULL을 통해 내용 구분을 목적으로 입력.
+				out.flush();
+				
+				out.write(temp.getRAM().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getSTORAGE().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getPRICE().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getPERFORMANCE().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getMANUFACTURE().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				char c = 10;
+				out.write(c);
+				out.flush();
+					
+					
+			
+			}
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
 	
 	public void ReadFile_PhoneList()
 	{
-		if(!CheckExistFile(Path + "PhoneIndex"))
+		String MODEL_NAME="";	//index 1
+	
+		String CPU_INFO="";	//index 2
+	
+		String DISPLAY="";		//index 3
+	
+		String RAM="";			//index 4
+	
+		String STORAGE="";		//index 5
+		
+		String PRICE="";		//index 6
+	
+		String PERFORMENCE="";	//index 7
+	
+		String MANUFACTURE="";	//index 8
+		
+		
+		if(!CheckExistFile(Path + FILENAME))
 		{
-			File file = new File(Path + "PhoneIndex");
+			File file = new File(Path + FILENAME);
 			try
 			{
 				file.createNewFile();
@@ -206,42 +231,89 @@ public class Phone_List {
 		
 		try
 		{
-			FileInputStream fin = new FileInputStream(Path + "PhoneIndex");
+			FileInputStream fin = new FileInputStream(Path + FILENAME);
 			Reader reader = new InputStreamReader(fin, "euc-kr"); 
 			BufferedReader in = new BufferedReader(reader);
+			Scanner s= new Scanner(System.in);
 			
 			char b;
-			int chc;
+			String line="";
 			
 			int BUFFER_SIZE = 1000;
-			String serialNumber = null;
-			String PhoneName = null;
 			
 			in.mark(BUFFER_SIZE);
-			while((chc = in.read() )!= -1)
+			while((line=in.readLine()) != null)
 			{
-
+				//System.out.print(line);
 				in.reset();
+				
 				while((b = (char) in.read()) != '\0')
 				{
-					serialNumber += b;
+					//System.out.print(b);
+					MODEL_NAME += b;
 				}
 				
 				while((b = (char) in.read()) != '\0')
 				{
-					PhoneName += b;
+					CPU_INFO += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					DISPLAY += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					RAM += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					STORAGE += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					PRICE += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					PERFORMENCE += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					MANUFACTURE += b;
+				}
+				
+				
+				
+				if((b = (char) in.read()) != 10)
+				{
+					System.out.println("Error");
 				}
 				in.mark(BUFFER_SIZE);
+				Phone temp = new Phone(MODEL_NAME, CPU_INFO, DISPLAY, RAM, STORAGE, PRICE, PERFORMENCE, MANUFACTURE);
+				total_phone_list.add(temp);	
 				
-				if(serialNumber == null)
-				{
-					break;
-				}
+				MODEL_NAME="";	//index 1
 				
-				total_phone_list.add(inputData_Phone(Path+serialNumber));
+				CPU_INFO="";	//index 2
+			
+				DISPLAY="";		//index 3
+			
+				RAM="";			//index 4
+			
+				STORAGE="";		//index 5
 				
-				serialNumber = null;
-				PhoneName = null;
+				PRICE="";		//index 6
+			
+				PERFORMENCE="";	//index 7
+			
+				MANUFACTURE="";	//index 8
+				
 			}
 			
 			fin.close();
@@ -251,6 +323,63 @@ public class Phone_List {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void Modifyanddelete()
+	{
+		for(int i=0;i<total_phone_list.size();i++)
+		{
+			System.out.println(i+". "+total_phone_list.get(i).getMODEL_NAME());
+		}
+		
+		int value=0;
+		boolean flag=true;
+		while(flag)
+		{
+			value=0;
+
+			 System.out.print("Choose Delete or Modify Phone Number : ");
+
+			 Scanner s = new Scanner(System.in);
+			 value = s.nextInt();
+			 
+			 for(int i =0;i<total_phone_list.size();i++)
+			 {
+				 if(value == i)
+				 {
+					 flag=false;
+					 break;
+				 }
+			 } 
+		}
+		
+		int tem;
+
+		while(true)
+		{
+			tem=0;
+
+			 System.out.print("Choose 1: Modify 2: Delete : ");
+
+			 Scanner s = new Scanner(System.in);
+			 tem = s.nextInt();
+			 
+			if(tem == 1)
+			{
+				total_phone_list.remove(value);
+				insert_Phone();
+				break;
+			}
+			else if(tem == 2)
+			{
+				total_phone_list.remove(value);
+				break;
+			}
+			else
+			{
+				System.out.println("Wrong Number");
+			}
+		}
 	}
 	
 	public ArrayList<Phone> getTotal_phone_list() {
