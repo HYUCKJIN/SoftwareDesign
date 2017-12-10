@@ -8,6 +8,7 @@ public class Phone {
 	private String STORAGE;		//index 5
 	private String PRICE;		//index 6
 	private String PERFORMANCE;	//index 7
+	private String MANUFACTURE; //index 8
 	
 	public Phone()
 	{
@@ -23,10 +24,11 @@ public class Phone {
 		else if(index == 5) setSTORAGE(Value);
 		else if(index == 6) setPRICE(Value);
 		else if(index == 7) setPERFORMANCE(Value);
+		else if(index == 8) setMANUFACTURE(Value);
 		else setMODEL_NAME(null);
 	}
 	
-	public Phone(String MODEL_NAME, String CPU_INFO, String DISPLAY, String RAM, String STORAGE, String PRICE, String PERFORMENCE)
+	public Phone(String MODEL_NAME, String CPU_INFO, String DISPLAY, String RAM, String STORAGE, String PRICE, String PERFORMENCE, String MANUFACTURE)
 	{
 		setMODEL_NAME(MODEL_NAME);
 		setCPU_INFO(CPU_INFO);
@@ -35,6 +37,7 @@ public class Phone {
 		setSTORAGE(STORAGE);
 		setPRICE(PRICE);
 		setPERFORMANCE(PERFORMENCE);
+		setMANUFACTURE(MANUFACTURE);
 	}
 	
 	public void printPhoneINFO()
@@ -46,6 +49,7 @@ public class Phone {
 		System.out.printf("저장용량:	" + STORAGE + "\n");
 		System.out.printf("가격:		" + PRICE + "\n");
 		System.out.printf("성능:		" + PERFORMANCE + "\n");
+		System.out.printf("제조사:	" + MANUFACTURE + "\n");
 	}
 	
 	public boolean equal(Phone currentPhone) //상세비교
@@ -64,6 +68,8 @@ public class Phone {
 		else if((str = currentPhone.getPRICE()) != PRICE)
 			return false;
 		else if((str = currentPhone.getPERFORMANCE()) != PERFORMANCE)
+			return false;
+		else if((str = currentPhone.getMANUFACTURE()) != MANUFACTURE)
 			return false;
 		return true;
 	}
@@ -130,5 +136,13 @@ public class Phone {
 
 	public void setPERFORMANCE(String pERFORMANCE) {
 		PERFORMANCE = pERFORMANCE;
+	}
+
+	public String getMANUFACTURE() {
+		return MANUFACTURE;
+	}
+
+	public void setMANUFACTURE(String mANUFACTURE) {
+		MANUFACTURE = mANUFACTURE;
 	}
 }
