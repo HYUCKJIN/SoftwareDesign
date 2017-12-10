@@ -54,8 +54,6 @@ public class Phone_List {
 			if(check_dir)
 			{
 				ReadFile_PhoneList();
-				
-				//insert_Phone(Integer.toString(total_phone_list.size()));
 			}
 			else
 			{

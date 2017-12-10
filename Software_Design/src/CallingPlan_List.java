@@ -108,7 +108,7 @@ public class CallingPlan_List {
 		
 		if(total_CallingPlan_list.isEmpty())
 		{
-			System.out.println("기종 목록 정보가 없습니다.");
+			System.out.println("요금제 목록 정보가 없습니다.");
 		}
 		else
 		{
