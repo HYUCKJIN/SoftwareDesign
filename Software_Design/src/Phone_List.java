@@ -127,7 +127,7 @@ public class Phone_List {
 				System.out.println(num + ". " + printPhone.getMODEL_NAME());
 				num++;
 			}
-			System.out.println(num + ". 잘 모르겠다.");
+			System.out.println(num + ". 잘 모르겠다.(상세검색)");
 		}
 	}
 	
