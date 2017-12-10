@@ -47,7 +47,20 @@ public class Phone_List {
 		}
 		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
 		{
-			ReadFile_PhoneList();
+			boolean check_dir;
+			
+			check_dir=CheckExistDir("Phone");
+			
+			if(check_dir)
+			{
+				ReadFile_PhoneList();
+				
+				//insert_Phone(Integer.toString(total_phone_list.size()));
+			}
+			else
+			{
+				System.out.println("기종 목록 정보가 없습니다.");
+			}
 		}
 		else if(mode == 3)	//추천 클래스에서 만들었을 때.
 		{
@@ -100,16 +113,17 @@ public class Phone_List {
 		return currentPhone;
 	}
 	
-	public int print_Phone_List() //휴대폰 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음 //리턴값은 마지막 항목 인덱스
+	public void print_Phone_List() //휴대폰 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
 	{
-		int num = 0;
+		int num;
+		
 		if(total_phone_list.isEmpty())
 		{
-			System.out.println("기종 목록이 없습니다.");
+			System.out.println("기종 목록 정보가 없습니다.");
 		}
 		else
 		{
-			while(num <= total_phone_list.lastIndexOf(total_phone_list))
+			for(num=0;num < total_phone_list.size();num++)
 			{
 				Phone printPhone = total_phone_list.get(num);
 				System.out.println(num + ". " + printPhone.getMODEL_NAME());
@@ -117,10 +131,14 @@ public class Phone_List {
 			}
 			System.out.println(num + ". 잘 모르겠다.");
 		}
-		return num;
 	}
 	
-	public Phone Get_SelectPhone(int num)
+	public int Get_Total_Phone_List_Size() //기종 목록 사이즈 리턴
+	{
+		return total_phone_list.size();
+	}
+	
+	public Phone Get_SelectPhone(int num) //기종 목록 항목중 하나 선택해서 리턴
 	{
 		Phone tempP = total_phone_list.get(num);
 		return tempP;

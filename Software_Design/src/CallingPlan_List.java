@@ -45,7 +45,18 @@ public class CallingPlan_List {
 		}
 		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
 		{
-			ReadFile_CallingPlanList();
+			boolean check_dir;
+			
+			check_dir=CheckExistDir("CallingPlan");
+			
+			if(check_dir)
+			{
+				ReadFile_CallingPlanList();
+			}
+			else
+			{
+				System.out.println("요금제 목록 정보가 없습니다.");
+			}
 		}
 		else if(mode == 3)	//추천 클래스에서 만들었을 때.
 		{
@@ -91,27 +102,32 @@ public class CallingPlan_List {
 		return currentCallingPlan;
 	}
 	
-	public int print_CallingPlan_List() //요금제 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음 //리턴값은 마지막 항목 인덱스
+	public void print_CallingPlan_List() //요금제 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
 	{
-		int num = 0;
+		int num;
+		
 		if(total_CallingPlan_list.isEmpty())
 		{
-			System.out.println("요금제 목록이 없습니다.");
-		}	
+			System.out.println("기종 목록 정보가 없습니다.");
+		}
 		else
 		{
-			while(num <= total_CallingPlan_list.lastIndexOf(total_CallingPlan_list))
+			for(num=0;num < total_CallingPlan_list.size();num++)
 			{
 				CallingPlan printCallingPlan = total_CallingPlan_list.get(num);
 				System.out.println(num + ". " + printCallingPlan.getPAY_NAME());
 				num++;
-			}	
+			}
 			System.out.println(num + ". 잘 모르겠다.");
 		}
-		return num;
 	}
 	
-	public CallingPlan Get_SelectCallingPlan(int num)
+	public int Get_Total_CallingPlan_List_Size() //요금제 목록 사이즈 리턴
+	{
+		return total_CallingPlan_list.size();
+	}
+	
+	public CallingPlan Get_SelectCallingPlan(int num) //요금제 목록 항목중 하나 선택해서 리턴
 	{
 		CallingPlan tempC = total_CallingPlan_list.get(num);
 		return tempC;

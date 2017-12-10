@@ -57,56 +57,75 @@ public class main {
 		 
 		 if(choose_mode_inBuyer == 1)//기종검색
 		 {
-			Phone_List plist = new Phone_List();
-			plist.ReadFile_PhoneList();
+			Phone_List plist = new Phone_List(2);
 			
-			int last = plist.print_Phone_List();
+			plist.print_Phone_List();
 			
-			System.out.println("원하시는 항목의 번호를 입력해주세요");
-			
-			Scanner input = new Scanner(System.in);
-			int inputNUM = input.nextInt();
-			
-			if(inputNUM == last)
+			while(true)
 			{
+				System.out.println("원하시는 항목의 번호를 입력해주세요");
 				
-				/////////////////Recommend (기종상세검색 선택)
+				Scanner input = new Scanner(System.in);
+				int inputNUM = input.nextInt();
 				
-			}
-			else
-			{
-				Phone selectPhone = plist.Get_SelectPhone(inputNUM);
+				if(inputNUM == plist.Get_Total_Phone_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우
+				{
+					
+					/////////////////Recommend (기종상세검색 선택)
+					
+					break;
+				}
+				else if(inputNUM < plist.Get_Total_Phone_List_Size() && inputNUM >=0)
+				{
+					Phone selectPhone = plist.Get_SelectPhone(inputNUM);
+					
+					System.out.println("선택하신 기종은 " + selectPhone.getMODEL_NAME() + " 입니다.\n");
 				
-				System.out.println("선택하신 기종은 " + selectPhone.getMODEL_NAME() + " 입니다.\n");
+					selectPhone.printPhoneINFO();
 				
-				selectPhone.printPhoneINFO();
+					break;
+				}
+				else
+				{
+					System.out.println("잘못된 입력입니다. 다시 선택해주세요");
+				}
 			}
 		 }
+		 
 		 else if(choose_mode_inBuyer == 2)//요금제검색
 		 {
-			 CallingPlan_List clist = new CallingPlan_List();
-			clist.ReadFile_CallingPlanList();
+			CallingPlan_List plist = new CallingPlan_List(2);
 			
-			int last = clist.print_CallingPlan_List();
-				
-			System.out.println("원하시는 항목의 번호를 입력해주세요");
-				
-			Scanner input = new Scanner(System.in);
-			int inputNUM = input.nextInt();
-			
-			if(inputNUM == last)
+			plist.print_CallingPlan_List();
+	
+			while(true)
 			{
+				System.out.println("원하시는 항목의 번호를 입력해주세요");
+					
+				Scanner input = new Scanner(System.in);
+				int inputNUM = input.nextInt();
 				
-				/////////////////Recommend (요금제상세검색 선택)
-				
-			}
-			else
-			{
-				CallingPlan selectCallingPlan = clist.Get_SelectCallingPlan(inputNUM);
-				
-				System.out.println("선택하신 요금제는 " + selectCallingPlan.getPAY_NAME() + " 입니다.\n");
-				
-				selectCallingPlan.printCallingPlanINFO();
+				if(inputNUM == plist.Get_Total_CallingPlan_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우
+				{
+						
+					/////////////////Recommend (요금제상세검색 선택)
+					
+					break;
+				}
+				else if(inputNUM < plist.Get_Total_CallingPlan_List_Size() && inputNUM >=0)//항목에서 요금제를 선택했을 경우
+				{
+					CallingPlan selectCallingPlan = plist.Get_SelectCallingPlan(inputNUM);
+					
+					System.out.println("선택하신 기종은 " + selectCallingPlan.getPAY_NAME() + " 입니다.\n");					
+						
+					selectCallingPlan.printCallingPlanINFO();
+					
+					break;
+				}
+				else
+				{
+					System.out.println("잘못된 입력입니다. 다시 선택해주세요");
+				}
 			}
 		 }
 		 else if(choose_mode_inBuyer == 3)
