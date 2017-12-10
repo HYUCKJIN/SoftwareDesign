@@ -95,10 +95,10 @@ public class main {
 			Scanner input = new Scanner(System.in);
 			int inputNUM = input.nextInt();
 			
-			if(inputNUM == plist.Get_Total_Phone_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우
+			if(inputNUM == plist.Get_Total_Phone_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우(기종 상세 검색)
 			{
 				
-				/////////////////Recommend (기종상세검색 선택)
+				/////////////////Recommend (기종 상세 검색 선택)
 				
 				break;
 			}
@@ -132,10 +132,10 @@ public class main {
 			Scanner input = new Scanner(System.in);
 			int inputNUM = input.nextInt();
 			
-			if(inputNUM == plist.Get_Total_CallingPlan_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우
+			if(inputNUM == plist.Get_Total_CallingPlan_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우(요금제 상세검색)
 			{
 					
-				/////////////////Recommend (요금제상세검색 선택)
+				/////////////////Recommend (요금제 상세 검색 선택)
 				
 				break;
 			}
@@ -143,7 +143,7 @@ public class main {
 			{
 				CallingPlan selectCallingPlan = plist.Get_SelectCallingPlan(inputNUM);
 				
-				System.out.println("선택하신 기종은 " + selectCallingPlan.getPAY_NAME() + " 입니다.\n");					
+				System.out.println("선택하신 요금제는 " + selectCallingPlan.getPAY_NAME() + " 입니다.\n");					
 					
 				selectCallingPlan.printCallingPlanINFO();
 				
