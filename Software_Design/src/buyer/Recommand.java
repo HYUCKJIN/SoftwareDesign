@@ -1,28 +1,33 @@
 package buyer;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import callingplan.CallingPlan;
 import callingplan.CallingPlan_List;
 import phone.Phone;
 import phone.Phone_List;
 
 public class Recommand {
-	Phone_List Reco_Phone = new Phone_List();
-	Phone StandPhone = new Phone();
-	Phone UserPhone = new Phone();
-	CallingPlan_List Reco_Calling = new CallingPlan_List();
-	CallingPlan StandCalling = new CallingPlan();
-	CallingPlan UserCalling = new CallingPlan();
-	private int[] arrPhone= new int[30];
-	private int[] arrScore = new int[30];
-	private int arrindex=0;
+	private Phone_List Reco_Phone;
+	private Phone StandPhone;
+	private Phone UserPhone;
+	private CallingPlan_List Reco_Calling;
+	private CallingPlan StandCalling;
+	private CallingPlan UserCalling; 
+	private int[] arrPhone;
+	private int[] arrScore;
+	private int arrindex;
 	private int Spec;
 	//리스트마다 각요소의 일치함을 비교한뒤 점수로환산하며 5점이 제일근접한 값이고 그이하로 차례로 출력한다.
 	
+	public Recommand()
+	{
+		Reco_Phone = new Phone_List();
+		StandPhone = new Phone();
+		UserPhone = new Phone();
+		Reco_Calling = new CallingPlan_List();
+		StandCalling = new CallingPlan();
+		UserCalling = new CallingPlan();
+		arrPhone= new int[30];
+		arrScore = new int[30];
+	}
 	
 	//PhoneStand vs PhoneUser	방식
 	
@@ -144,6 +149,14 @@ public class Recommand {
 			System.out.println(arr[i]);
 		return arr;
 	}*/
+
+	public int getArrindex() {
+		return arrindex;
+	}
+
+	public void setArrindex(int arrindex) {
+		this.arrindex = arrindex;
+	}
 	
 	
 	

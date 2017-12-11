@@ -93,8 +93,11 @@ public class main {
 	{
 		Phone_List plist = new Phone_List(2);
 		
-		
-		
+		for(int i=0;i<plist.Get_Total_Phone_List_Size();i++)
+		{
+			System.out.println(i+". "+plist.getTotal_phone_list().get(i).getMODEL_NAME());
+		}
+		System.out.println(plist.Get_Total_Phone_List_Size() + ". 잘 모르겠다. 속성으로 추천받고 싶다.");
 		while(true)
 		{
 			System.out.println("원하시는 항목의 번호를 입력해주세요");
