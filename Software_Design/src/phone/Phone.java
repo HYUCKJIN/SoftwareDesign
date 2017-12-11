@@ -45,12 +45,12 @@ public class Phone {
 	{
 		System.out.printf("이름:		" + MODEL_NAME + "\n");
 		System.out.printf("CPU:		" + CPU_INFO + "\n");
-		System.out.printf("화면크기:	" + DISPLAY + "\n");
+		System.out.printf("화면크기:		" + DISPLAY + "\n");
 		System.out.printf("램:		" + RAM + "\n");
-		System.out.printf("저장용량:	" + STORAGE + "\n");
+		System.out.printf("저장용량:		" + STORAGE + "\n");
 		System.out.printf("가격:		" + PRICE + "\n");
 		System.out.printf("성능:		" + PERFORMANCE + "\n");
-		System.out.printf("제조사:	" + MANUFACTURE + "\n");
+		System.out.printf("제조사:		" + MANUFACTURE + "\n");
 	}
 	
 	public boolean equal(Phone currentPhone) //상세비교

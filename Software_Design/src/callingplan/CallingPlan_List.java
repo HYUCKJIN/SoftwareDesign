@@ -2,6 +2,7 @@ package callingplan;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,11 +11,14 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import phone.Phone;
+
 public class CallingPlan_List {
 	private ArrayList<CallingPlan> total_CallingPlan_list;
 	private ArrayList<CallingPlan> output_CallingPlan_list;
 	private CallingPlan thinkCallingPlan;
 	private String Path = "./CallingPlan/";
+	private String FILENAME ="CALLINGPLANINFO";
 	
 	public CallingPlan_List()
 	{
@@ -44,7 +48,7 @@ public class CallingPlan_List {
 				}	
 			}
 		}
-		else if(mode == 2)	//구매자에게서 불러 왔을 때. 
+		else if(mode == 2)	//구매자에게서 불러 왔을 때. and 추천
 		{
 			boolean check_dir;
 			
@@ -56,12 +60,12 @@ public class CallingPlan_List {
 			}
 			else
 			{
-				System.out.println("요금제 목록 정보가 없습니다.");
+				File dir_CallingPlan = new File("CallingPlan");
+				if(!dir_CallingPlan.mkdirs())
+				{
+					System.err.println("MKDIR Error");
+				}	
 			}
-		}
-		else if(mode == 3)	//추천 클래스에서 만들었을 때.
-		{
-			
 		}
 		else
 		{
@@ -69,47 +73,13 @@ public class CallingPlan_List {
 		}
 	}
 	
-	public CallingPlan inputData_CallingPlan(String str)//인덱스를 읽어 CallingPlan클래스형 변수로 리턴
-	{
-		CallingPlan currentCallingPlan = new CallingPlan();
-		
-		///////////파일읽는부분/////////////////////////////////////////////////////////////////////
-		File file = new File(str);
-		FileReader fr;
-		BufferedReader input; 
-		try
-		{
-			fr = new FileReader(file);
-			input = new BufferedReader(fr);
-			String s = null;
-			s = input.readLine();
-			currentCallingPlan.setPAY_NAME(s);
-			s = input.readLine();
-			currentCallingPlan.setMESSAGE(s);
-			s = input.readLine();
-			currentCallingPlan.setCALL(s);
-			s = input.readLine();
-			currentCallingPlan.setDATA(s);
-			s = input.readLine();
-			currentCallingPlan.setPRICE(s);
-			input.close();
-		}
-		catch (IOException e)
-		{
-			  e.printStackTrace();
-		}
-		/////////////////////////////////////////////////////////////////////////////////////////
-		
-		return currentCallingPlan;
-	}
-	
 	public void print_CallingPlan_List() //요금제 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
 	{
 		int num;
 		
-		if(total_CallingPlan_list.isEmpty())
+		if(!total_CallingPlan_list.isEmpty())
 		{
-			System.out.println("요금제 목록 정보가 없습니다.");
+			System.out.println("요금제 목록 출력 실패");
 		}
 		else
 		{
@@ -144,6 +114,7 @@ public class CallingPlan_List {
 	}
 	
 	public boolean CheckExistDir(String dirname)
+
 	{
 		File dir = new File(dirname);
 		
@@ -151,7 +122,8 @@ public class CallingPlan_List {
 		
 		return isExists;
 	}
-	public void insert_CallingPlan(String File)
+	
+	public void insert_CallingPlan()
 	{
 		Scanner s;
 		s = new Scanner(System.in);
@@ -172,50 +144,74 @@ public class CallingPlan_List {
 		System.out.print("PRICE : ");
 		PRICE = s.nextLine();
 		
+		CallingPlan temp = new CallingPlan(PAY_NAME, MESSAGE, CALL, DATA, PRICE);
+		total_CallingPlan_list.add(temp);		
+	}
+	public void WriteFile_CallingPlanList() throws IOException
+	{
+		FileOutputStream out;
 		try {
-			// 각 정보마다 NULL을 통해 구분시킴.
+			out = new FileOutputStream(Path + FILENAME);
 			
-			FileOutputStream out = new FileOutputStream(Path+File);
+			for(int i=0;i<total_CallingPlan_list.size();i++)
+			{
+				CallingPlan temp = total_CallingPlan_list.get(i);
+				
+				out.write(temp.getPAY_NAME().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getMESSAGE().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getCALL().getBytes());
+				out.flush();
+				out.write(0x00);	//NULL. NULL을 통해 내용 구분을 목적으로 입력.
+				out.flush();
+				
+				out.write(temp.getDATA().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
+				
+				out.write(temp.getPRICE().getBytes());
+				out.flush();
+				out.write(0x00);
+				out.flush();
 			
-			out.write(PAY_NAME.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
+				char c = 10;
+				out.write(c);
+				out.flush();
+					
+					
 			
-			out.write(MESSAGE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(CALL.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(DATA.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
-			out.write(PRICE.getBytes());
-			out.flush();
-			out.write('\n');
-			out.flush();
-			
+			}
 			out.close();
-		} catch (IOException e) 
-		{
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
+		}	
 	}
 	
 	public void ReadFile_CallingPlanList()
 	{
-		if(!CheckExistFile(Path + "CallingPlanIndex"))
+		String PAY_NAME="";	//index 1
+	
+		String MESSAGE="";	//index 2
+	
+		String CALL="";		//index 3
+	
+		String DATA="";		//index 4
+	
+		String PRICE="";	//index 5
+		
+		
+		if(!CheckExistFile(Path + FILENAME))
 		{
-			File file = new File(Path + "CallingPlanIndex");
+			File file = new File(Path + FILENAME);
 			try
 			{
 				file.createNewFile();
@@ -228,42 +224,69 @@ public class CallingPlan_List {
 		
 		try
 		{
-			FileInputStream fin = new FileInputStream(Path + "CallingPlanIndex");
+			FileInputStream fin = new FileInputStream(Path + FILENAME);
 			Reader reader = new InputStreamReader(fin, "euc-kr"); 
 			BufferedReader in = new BufferedReader(reader);
+			Scanner s= new Scanner(System.in);
 			
 			char b;
-			int chc;
+			String line="";
 			
 			int BUFFER_SIZE = 1000;
-			String serialNumber = null;
-			String CallingPlanName = null;
 			
 			in.mark(BUFFER_SIZE);
-			while((chc = in.read() )!= -1)
+			while((line=in.readLine()) != null)
 			{
-
+				//System.out.print(line);
 				in.reset();
+				
 				while((b = (char) in.read()) != '\0')
 				{
-					serialNumber += b;
+					//System.out.print(b);
+					PAY_NAME += b;
 				}
 				
 				while((b = (char) in.read()) != '\0')
 				{
-					CallingPlanName += b;
+					MESSAGE += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					CALL += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					DATA += b;
+				}
+				
+				while((b = (char) in.read()) != '\0')
+				{
+					PRICE += b;
+				}
+				
+				
+				
+				if((b = (char) in.read()) != 10)
+				{
+					System.out.println("Error");
 				}
 				in.mark(BUFFER_SIZE);
+				CallingPlan temp = new CallingPlan(PAY_NAME, MESSAGE, CALL, DATA, PRICE);
+				total_CallingPlan_list.add(temp);	
 				
-				if(serialNumber == null)
-				{
-					break;
-				}
+				PAY_NAME="";	//index 1
 				
-				total_CallingPlan_list.add(inputData_CallingPlan(Path+serialNumber));
+				MESSAGE="";	//index 2
+			
+				CALL="";		//index 3
+			
+				DATA="";			//index 4
+			
+				PRICE="";		//index 5
 				
-				serialNumber = null;
-				CallingPlanName = null;
+				
 			}
 			
 			fin.close();
@@ -271,6 +294,64 @@ public class CallingPlan_List {
 			
 		} catch (IOException e) {	//존재여부 확인하고 와서 들어갈 일 없음.
 			e.printStackTrace();
+		}
+		
+	}
+	
+	public void Modifyanddelete()
+	{
+		for(int i=0;i<total_CallingPlan_list.size();i++)
+		{
+			System.out.println(i+". "+total_CallingPlan_list.get(i).getPAY_NAME());
+		}
+		
+		int value=0;
+		boolean flag=true;
+		while(flag)
+		{
+			value=0;
+
+			 System.out.print("Choose Delete or Modify CallingPlan Number : ");
+
+			 Scanner s = new Scanner(System.in);
+			 value = s.nextInt();
+			 
+			 for(int i =0;i<total_CallingPlan_list.size();i++)
+			 {
+				 if(value == i)
+				 {
+					 flag=false;
+					 break;
+				 }
+			 } 
+		}
+		
+		int tem;
+
+		while(true)
+		{
+			tem=0;
+
+			 System.out.print("Choose 1: Modify 2: Delete : ");
+
+			 Scanner s = new Scanner(System.in);
+			 tem = s.nextInt();
+			 
+			if(tem == 1)
+			{
+				total_CallingPlan_list.remove(value);
+				insert_CallingPlan();
+				break;
+			}
+			else if(tem == 2)
+			{
+				total_CallingPlan_list.remove(value);
+				break;
+			}
+			else
+			{
+				System.out.println("Wrong Number");
+			}
 		}
 		
 	}

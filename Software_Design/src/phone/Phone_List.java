@@ -202,7 +202,7 @@ public class Phone_List {
 	{
 		String MODEL_NAME="";	//index 1
 	
-		String CPU_INFO="";	//index 2
+		String CPU_INFO="";		//index 2
 	
 		String DISPLAY="";		//index 3
 	

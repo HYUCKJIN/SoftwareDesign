@@ -271,26 +271,25 @@ public class Seller {
 			
 			if(mode_callingplan == 1)
 			{
-				System.out.println("요금제 입력을 선택하셨습니다.");
-				String Payname, Message, Call, Data, Price;
-				
-				System.out.print("요금제 명 : ");
-				Payname = s.nextLine();
-				System.out.print("문자량 : ");
-				Message = s.nextLine();
-				System.out.print("통화량 : ");
-				Call = s.nextLine();
-				System.out.print("데이터 : ");
-				Data = s.nextLine();
-				System.out.print("요금 : ");
-				Price = s.nextLine();
+				System.out.println("Insert CallingPlan");
+				callingplanlist.insert_CallingPlan();
 			}
 			else if(mode_callingplan == 2)
 			{
-				
+				System.out.println("Modify, Delete CallingPlan");
+				callingplanlist.Modifyanddelete();
 			}
 			else if(mode_callingplan == 3)
 			{
+				try
+				{
+					phonelist.WriteFile_PhoneList();
+				}
+				catch (IOException e) 
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				System.out.println("Quit");
 				break;
 			}
