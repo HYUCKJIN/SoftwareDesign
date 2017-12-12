@@ -268,8 +268,7 @@ public class Seller {
 		while(true)
 		{
 			int mode_callingplan=choosemenu(3,"1: Insert, 2: Modify, Delete, 3: Quit");
-			Scanner s = new Scanner(System.in);
-			
+	
 			if(mode_callingplan == 1)
 			{
 				System.out.println("Insert CallingPlan");

@@ -73,7 +73,7 @@ public class CallingPlan_List {
 		}
 	}
 	
-	public void print_CallingPlan_List() //요금제 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
+	/*public void print_CallingPlan_List() //요금제 이름 목록으로 출력하고 목록 마지막에 상세검색선택하게 해놓음
 	{
 		int num;
 		
@@ -91,7 +91,7 @@ public class CallingPlan_List {
 			}
 			System.out.println(num + ". 잘 모르겠다.(상세검색)");
 		}
-	}
+	}*/
 	
 	public int Get_Total_CallingPlan_List_Size() //요금제 목록 사이즈 리턴
 	{

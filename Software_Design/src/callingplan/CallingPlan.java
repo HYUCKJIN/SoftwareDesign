@@ -74,32 +74,32 @@ public class CallingPlan {
 		return PAY_NAME;
 	}
 
-	public void setPAY_NAME(String PAY_NAME) {
-		PAY_NAME = PAY_NAME;
+	public void setPAY_NAME(String pAY_NAME) {
+		PAY_NAME = pAY_NAME;
 	}
 
 	public String getMESSAGE() {
 		return MESSAGE;
 	}
 
-	public void setMESSAGE(String MESSAGE) {
-		MESSAGE = MESSAGE;
+	public void setMESSAGE(String mESSAGE) {
+		MESSAGE = mESSAGE;
 	}
 
 	public String getCALL() {
 		return CALL;
 	}
 
-	public void setCALL(String CALL) {
-		CALL = CALL;
+	public void setCALL(String cALL) {
+		CALL = cALL;
 	}
 
 	public String getDATA() {
 		return DATA;
 	}
 
-	public void setDATA(String DATA) {
-		DATA = DATA;
+	public void setDATA(String dATA) {
+		DATA = dATA;
 	}
 
 

@@ -132,8 +132,6 @@ public class main {
 	public static void CallingPlan_Recommend()
 	{
 		CallingPlan_List plist = new CallingPlan_List(2);
-		
-		plist.print_CallingPlan_List();
 
 		while(true)
 		{
