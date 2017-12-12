@@ -105,6 +105,7 @@ public class Seller {
 				else if(selectadmin ==2)
 				{
 					//CallingPlan admin
+					callingplanlist = new CallingPlan_List(1);
 					callingplanAdmin();
 				}
 				else if(selectadmin == 3)
@@ -283,7 +284,7 @@ public class Seller {
 			{
 				try
 				{
-					phonelist.WriteFile_PhoneList();
+					callingplanlist.WriteFile_CallingPlanList();
 				}
 				catch (IOException e) 
 				{
