@@ -37,10 +37,10 @@ public class CallingPlan {
 	
 	public void printCallingPlanINFO()
 	{
-		System.out.printf("요금제 이름:		" + PAY_NAME + "\n");
+		System.out.printf("요금제 이름:	" + PAY_NAME + "\n");
 		System.out.printf("문자용량:		" + MESSAGE + "\n");
-		System.out.printf("전화용량:	" + CALL + "\n");
-		System.out.printf("데이터용량: " + DATA +"\n");
+		System.out.printf("전화용량:		" + CALL + "\n");
+		System.out.printf("데이터용량: 	" + DATA +"\n");
 		System.out.printf("가격:		" + PRICE + "\n");
 		
 

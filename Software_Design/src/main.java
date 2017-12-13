@@ -131,25 +131,31 @@ public class main {
 	
 	public static void CallingPlan_Recommend()
 	{
-		CallingPlan_List plist = new CallingPlan_List(2);
+		CallingPlan_List clist = new CallingPlan_List(2);
 
+		for(int i=0;i<clist.Get_Total_CallingPlan_List_Size();i++)
+		{
+			System.out.println(i+". "+clist.getTotal_CallingPlan_list().get(i).getPAY_NAME());
+		}
+		System.out.println(clist.Get_Total_CallingPlan_List_Size() + ". 잘 모르겠다. 속성으로 추천받고 싶다.");
 		while(true)
 		{
-			System.out.println("원하시는 항목의 번호를 입력해주세요");
+			System
+			.out.println("원하시는 항목의 번호를 입력해주세요");
 				
 			Scanner input = new Scanner(System.in);
 			int inputNUM = input.nextInt();
 			
-			if(inputNUM == plist.Get_Total_CallingPlan_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우(요금제 상세검색)
+			if(inputNUM == clist.Get_Total_CallingPlan_List_Size())//항목 마지막의 잘 모르겠다를 선택했을 경우(요금제 상세검색)
 			{
 					
 				/////////////////Recommend (요금제 상세 검색 선택)
 				
 				break;
 			}
-			else if(inputNUM < plist.Get_Total_CallingPlan_List_Size() && inputNUM >=0)//항목에서 요금제를 선택했을 경우
+			else if(inputNUM < clist.Get_Total_CallingPlan_List_Size() && inputNUM >=0)//항목에서 요금제를 선택했을 경우
 			{
-				CallingPlan selectCallingPlan = plist.Get_SelectCallingPlan(inputNUM);
+				CallingPlan selectCallingPlan = clist.Get_SelectCallingPlan(inputNUM);
 				
 				System.out.println("선택하신 요금제는 " + selectCallingPlan.getPAY_NAME() + " 입니다.\n");					
 					
