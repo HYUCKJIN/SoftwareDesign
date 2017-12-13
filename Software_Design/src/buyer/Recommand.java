@@ -51,8 +51,8 @@ public class Recommand {
 				Spec++;
 			if(Integer.parseInt(StandPhone.getSTORAGE())==Integer.parseInt(UserPhone.getSTORAGE()))
 				Spec++;
-			//if(StandPhone.getMENUFACTURE()==UserPhone.getMANUFACTURE())
-				//Spec++;
+			if(StandPhone.getMANUFACTURE()==UserPhone.getMANUFACTURE())
+				Spec++;
 			if(Spec>2)
 			{
 				//3이상의 제품군을 일단 다저장함.
@@ -82,7 +82,7 @@ public class Recommand {
 		UserCalling.setDATA(DATA);
 		UserCalling.setMESSAGE(MESSAGE);
 		UserCalling.setPRICE(PRICE);
-			//UserPhone.setMANUFACTURE(MF);
+		
 		for(i=0;i<Reco_Calling.Get_Total_CallingPlan_List_Size();i++)
 		{
 			Spec = 0;
